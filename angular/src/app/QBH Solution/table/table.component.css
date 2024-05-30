@@ -1,0 +1,17 @@
+.container {
+    max-width: 900px;
+  }
+  
+  .table {
+    margin-top: 20px;
+  }
+  
+  .thead-dark th {
+    background-color: #343a40;
+    color: white;
+  }
+  
+  .btn {
+    margin-right: 10px;
+  }
+  

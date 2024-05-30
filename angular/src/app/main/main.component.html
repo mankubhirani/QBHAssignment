@@ -1,0 +1,105 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Heliverse</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" routerLink="/add">Add Cart</a>
+          </li>
+         
+          
+        </ul>
+        <form class="d-flex" role="search" [formGroup]="loginForm">
+          <input class="form-control me-2" type="search" placeholder="Search By Name" formControlName="surch"
+            aria-label="Search">
+          <button class="btn btn-outline-success" (click)="submitLoginForm()">Search</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <h3 class="text-center">
+          Heliverse Frontend Assignment Angular
+        </h3>
+      </div>
+    </div>
+  </div>
+  
+  <form class="d-flex mt-4 justify-content-center" role="search"  [formGroup]="filterForm">
+    <select class="form-select" aria-label="Default select example" style="
+    width: 16rem;" formControlName="available">
+      <option selected disabled>Open this select Available menu</option>
+      <option value="true">true</option>
+      <option value="false">false</option>
+  
+    </select>
+    <input class="form-control me-2" type="search" placeholder="Domain" aria-label="Search" style="
+    width: 16rem;" formControlName="domain">
+    <select class="form-select" aria-label="Default select example" style="
+      width: 16rem;" formControlName="gender">
+      <option selected disabled>Open this select gender menu</option>
+      <option value="Male">Male</option>
+      <option value="Female">Female</option>
+  
+    </select>
+    <button class="btn btn-outline-success" type="submit" (click)="filterCode()">Search</button>
+  </form>
+  
+  
+  <!-- 
+  start card -->
+  
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="row">
+          <div class="col-md-2"
+            *ngFor="let i of employeeData | paginate: {itemsPerPage: tableSize, currentPage: page, totalItems: count }; let k = index;">
+            <div class="card mt-4 shadow p-3 mb-5 bg-body-tertiary rounded justify-content-center">
+              <img src="{{i.avatar}}" class="card-img-top rounded-circle justify-content-center" alt="..."
+                style="height: 5rem;width: 5rem;margin-left: 3rem;">
+              <div class="card-body">
+                <h5 class="card-title"> {{i.first_name}} {{i.last_name}} </h5>
+              </div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">{{i.email}}</li>
+                <li class="list-group-item"><b>Gender :- </b> {{ i.gender}}</li>
+                <li class="list-group-item"><b>Domain :- </b> {{i.domain}}</li>
+                <li class="list-group-item"><b>Available :- </b> {{i.available}}</li>
+                <li class="list-group-item d-grid gap-2"><button type="button" class="btn btn-primary"
+                    (click)="getdata(i)">Add Cart</button>
+                </li>
+              </ul>
+  
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+  <div class="row mt-4" style="margin-left: 1rem;">
+  
+    <div class="col-md-3">
+      <label>Show
+        <select (change)="onTableSizeChange($event)">
+          <option *ngFor="let size of tableSizes">{{size}}</option>
+        </select> entries</label>
+    </div>
+  
+    <div class="col-md-9" style="float:right;text-align: right">
+      <pagination-controls previousLabel="Prev" nextLabel="Next"
+        (pageChange)="onTabledataChange($event)"></pagination-controls>
+    </div>
+  
+  </div>
